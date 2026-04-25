@@ -124,7 +124,7 @@ def delete_movie(movie_id: str):
             return {"message": "Deleted"}
     raise HTTPException(status_code=404, detail="Movie not found")
 
-
+#LAB4
 #1
 from fastapi import FastAPI
 
@@ -963,7 +963,7 @@ def main():
 
             event = Event(t, data, p.id)
             p.handle_event(event)
-            Logger.log(event, p, log_file)
+            Logger.log_action(u, "view", p, log_file)
 
 
     logs = Logger.read_logs(log_file)
@@ -978,13 +978,8 @@ def main():
 
     top_inv_player = max(players, key=lambda p: len(p.inventory))
 
-    print("--- ИТОГИ СЕССИИ ---")
     print(f"Всего событий: {dict(stats)}")
-    print(f"Топ-дамагер (ID): {top_dmg_id} (Урон: {damage_map.get(top_dmg_id)})")
+    print(f"Топ-дамагер: {top_dmg_id} (Урон: {damage_map.get(top_dmg_id)})")
     print(f"Топ-собиратель: {top_inv_player.name} (Предметов: {len(top_inv_player.inventory)})")
     for p in players:
         print(f"{p.name}: HP={p.hp:.1f}, Inventory={list(p.inventory)}")
-
-
-if __name__ == "__main__":
-    main()
